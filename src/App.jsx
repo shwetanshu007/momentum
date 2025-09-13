@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
+import SimpleStackingServices from './components/SimpleStackingServices.jsx';
+import CaseStudiesCarousel from './components/CaseStudiesCarousel.jsx';
+import ZigzagCoreValues from './components/ZigzagCoreValues.jsx';
+
 import { Button } from '@/components/ui/button.jsx';
 import GooeyNav from './components/GooeyNav';
-import ParticlesBackground from './components/ParticlesBackground';
+import GooeyBackground from './components/GooeyBackground.jsx';
 import SpotlightCard from './components/SpotlightCard';
 import CountUp from './components/CountUp';
 import './App.css';
 
 function App() {
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       document.querySelectorAll('.timeline-content-alt').forEach((el) => {
@@ -43,26 +40,25 @@ function App() {
       </nav>
 
       {/* Hero Section - Important Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#00403d' }}>
-        <ParticlesBackground className="w-full h-full">
-          <div className="container mx-auto px-4 text-center flex items-center justify-center min-h-screen" style={{ height: '100vh' }}>
-            <div className="w-full">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: '#d9ff00' }}>
-                Accelerate Your Brand Momentumm
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto font-bold" style={{ color: '#f3f4f6', letterSpacing: '0.01em' }}>
-                A full-service marketing agency helping brands achieve scalable growth through data-driven strategy, expert execution, and a relentless focus on performance.
-              </p>
-              <Button 
-                className="button-gradient-effect text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                style={{ backgroundColor: '#d9ff00', color: '#00403d' }}
-                onClick={() => window.open('https://wa.me/919408266191?text=I%20am%20interested%20in%20a%20discovery%20call%20with%20Momentumm%20Media', '_blank')}
-              >
-                Start Your Free Discovery Call
-              </Button>
-            </div>
+      <section id="hero" className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#00403d', position: 'relative', overflow: 'hidden' }}>
+        <GooeyBackground />
+        <div className="container mx-auto px-4 text-center flex items-center justify-center min-h-screen" style={{ height: '100vh', position: 'relative', zIndex: 1 }}>
+          <div className="w-full">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: '#d9ff00' }}>
+              Accelerate Your Brand Momentumm
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto font-bold" style={{ color: '#f3f4f6', letterSpacing: '0.01em' }}>
+              A full-service marketing agency helping brands achieve scalable growth through data-driven strategy, expert execution, and a relentless focus on performance.
+            </p>
+            <Button 
+              className="button-gradient-effect text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+              style={{ backgroundColor: '#d9ff00', color: '#00403d' }}
+              onClick={() => window.open('https://wa.me/919408266191?text=I%20am%20interested%20in%20a%20discovery%20call%20with%20Momentumm%20Media', '_blank')}
+            >
+              Start Your Free Discovery Call
+            </Button>
           </div>
-        </ParticlesBackground>
+        </div>
       </section>
 
       {/* Our Services - Important Section */}
@@ -74,229 +70,101 @@ function App() {
           <p className="text-xl text-center mb-16 max-w-3xl mx-auto" style={{ color: '#ffffff' }}>
             Integrated marketing solutions designed to drive measurable outcomes for your business.
           </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 - Pine Green */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#00403d"
-              spotlightColor="rgba(217, 255, 0, 0.15)"
-              borderColor="rgba(217, 255, 0, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#d9ff00' }}>Strategy & Branding</h3>
-              <p className="mb-4" style={{ color: '#ffffff' }}>Develop a strong, differentiated brand presence.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#b3cfcd' }}>
-                <li>• Brand Strategy & Positioning</li>
-                <li>• Visual Identity & Logo Design</li>
-                <li>• Brand Guidelines</li>
-                <li>• Market Research</li>
-              </ul>
-            </SpotlightCard>
+          <SimpleStackingServices />
+        </div>
+      </section>
 
-            {/* Service Card 2 - Neon Yellow */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#d9ff00"
-              spotlightColor="rgba(0, 64, 61, 0.15)"
-              borderColor="rgba(0, 64, 61, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>Digital Marketing</h3>
-              <p className="mb-4" style={{ color: '#00403d' }}>Maximize reach and conversions with precise, data-informed campaigns.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#00403d' }}>
-                <li>• SEO & SEM</li>
-                <li>• PPC Advertising</li>
-                <li>• Email Marketing</li>
-                <li>• WhatsApp Marketing</li>
-              </ul>
-            </SpotlightCard>
-
-            {/* Service Card 3 - Pine Green */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#00403d"
-              spotlightColor="rgba(217, 255, 0, 0.15)"
-              borderColor="rgba(217, 255, 0, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#d9ff00' }}>Performance Marketing</h3>
-              <p className="mb-4" style={{ color: '#d9ff00' }}>Results-driven campaigns focused on maximizing ROI.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#d9ff00' }}>
-                <li>• Conversion Rate Optimization</li>
-                <li>• Paid Media Strategy</li>
-                <li>• Funnel Development</li>
-                <li>• Attribution & Measurement</li>
-              </ul>
-            </SpotlightCard>
-
-            {/* Service Card 4 - Neon Yellow */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#d9ff00"
-              spotlightColor="rgba(0, 64, 61, 0.15)"
-              borderColor="rgba(0, 64, 61, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>Social Media & Content</h3>
-              <p className="mb-4" style={{ color: '#00403d' }}>Build meaningful connections with your audience.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#00403d' }}>
-                <li>• Content Strategy & Creation</li>
-                <li>• Social Media Management</li>
-                <li>• Influencer Partnerships</li>
-                <li>• Video Production</li>
-              </ul>
-            </SpotlightCard>
-
-            {/* Service Card 5 - Pine Green */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#00403d"
-              spotlightColor="rgba(217, 255, 0, 0.15)"
-              borderColor="rgba(217, 255, 0, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#d9ff00' }}>Community & Reputation</h3>
-              <p className="mb-4" style={{ color: '#ffffff' }}>Safeguard and strengthen your brand's reputation.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#b3cfcd' }}>
-                <li>• Reputation Monitoring</li>
-                <li>• Community Engagement</li>
-                <li>• Crisis Communications</li>
-                <li>• PR Strategy</li>
-              </ul>
-            </SpotlightCard>
-
-            {/* Service Card 6 - Neon Yellow */}
-            <SpotlightCard 
-              className="p-6"
-              backgroundColor="#d9ff00"
-              spotlightColor="rgba(0, 64, 61, 0.15)"
-              borderColor="rgba(0, 64, 61, 0.3)"
-            >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>Training & Consulting</h3>
-              <p className="mb-4" style={{ color: '#00403d' }}>Empower your team with best-practice marketing expertise.</p>
-              <ul className="space-y-2 mb-6" style={{ color: '#00403d' }}>
-                <li>• Customized Workshops</li>
-                <li>• Strategy Consulting</li>
-                <li>• Process Optimization</li>
-              </ul>
-            </SpotlightCard>
+      {/* About Us Section - Redesigned */}
+      <section id="about" className="py-20" style={{ backgroundColor: '#b3cccc' }}>
+        <div className="container mx-auto px-4">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-center mb-8" style={{ color: '#00403d', letterSpacing: '-1px' }}>
+            About <span className="text-[#00403d]">Momentumm Media</span>
+          </h2>
+          <p className="text-2xl text-center mb-12 max-w-4xl mx-auto font-medium" style={{ color: '#00403d' }}>
+            A full-service marketing agency helping brands achieve scalable growth through data-driven strategy, expert execution, and a relentless focus on performance.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Mission Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center min-h-[260px]">
+              <div className="mb-4">
+                <span className="inline-block bg-[#00403d] p-5 rounded-2xl shadow-md">
+                  {/* Target Icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" width="40" height="40">
+                    <circle cx="16" cy="16" r="14" stroke="#fff" strokeWidth="2.5" fill="none" />
+                    <circle cx="16" cy="16" r="7" stroke="#fff" strokeWidth="2.5" fill="none" />
+                  </svg>
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-[#00403d]">Our Mission</h3>
+              <p className="text-lg text-center text-[#00403d] font-medium">To empower businesses with strategic marketing solutions that deliver measurable, sustainable growth through disciplined planning and expert execution.</p>
+            </div>
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center min-h-[260px]">
+              <div className="mb-4">
+                <span className="inline-block bg-[#00403d] p-5 rounded-2xl shadow-md">
+                  {/* Eye Icon - improved */}
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 40" width="40" height="40">
+                    <path d="M4 20C7.5 12.5 15 7 20 7C25 7 32.5 12.5 36 20C32.5 27.5 25 33 20 33C15 33 7.5 27.5 4 20Z" stroke="#fff" strokeWidth="2.5" fill="none"/>
+                    <circle cx="20" cy="20" r="6" stroke="#fff" strokeWidth="2.5" fill="none"/>
+                  </svg>
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-[#00403d]">Our Vision</h3>
+              <p className="text-lg text-center text-[#00403d] font-medium">To be the trusted partner for brands seeking consistent, impactful marketing outcomes in an evolving landscape.</p>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Our Core Values - Zigzag River Animation */}
+      <ZigzagCoreValues />
+
       {/* Why Choose Us - Unimportant Section */}
-      <section id="why-choose" className="py-20" style={{ backgroundColor: '#e4e9e9' }}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16" style={{ color: '#00403d' }}>
+      <section id="why-choose" className="py-20" style={{ backgroundColor: '#00403d' }}>
+        <div className="container mx-auto px-4" style={{ backgroundColor: '#00403d', borderRadius: '2rem', padding: '2rem 1rem' }}>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16" style={{ color: '#d9ff00' }}>
             Why Choose Momentumm Media
           </h2>
-          
           {/* Stats Section */}
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#00403d' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#d9ff00' }}>
                 <CountUp end={500} suffix="+" />
               </div>
-              <p style={{ color: '#000000' }}>Satisfied Clients</p>
+              <p style={{ color: '#fff', fontWeight: 600 }}>Satisfied Clients</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#00403d' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#d9ff00' }}>
                 <CountUp end={250} suffix="%" />
               </div>
-              <p style={{ color: '#000000' }}>Average ROI Increase</p>
+              <p style={{ color: '#fff', fontWeight: 600 }}>Average ROI Increase</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#00403d' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#d9ff00' }}>
                 <CountUp end={1} suffix=" Cr+" />
               </div>
-              <p style={{ color: '#000000' }}>Ad Spend Managed</p>
+              <p style={{ color: '#fff', fontWeight: 600 }}>Ad Spend Managed</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#00403d' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#d9ff00' }}>
                 <CountUp end={98} suffix="%" />
               </div>
-              <p style={{ color: '#000000' }}>Client Satisfaction</p>
+              <p style={{ color: '#fff', fontWeight: 600 }}>Client Satisfaction</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#00403d' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2" style={{ color: '#d9ff00' }}>
                 <CountUp end={5} suffix="+" />
               </div>
-              <p style={{ color: '#000000' }}>Years of Excellence</p>
+              <p style={{ color: '#fff', fontWeight: 600 }}>Years of Excellence</p>
             </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Removed duplicate Our Services block */}
             <div className="text-center p-6">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>End-to-End Partnership</h3>
-              <p style={{ color: '#000000' }}>We manage your marketing initiatives from planning to execution, ensuring complete alignment with your business objectives.</p>
-            </div>
-            <div className="text-center p-6">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>Strategy-Led Execution</h3>
-              <p style={{ color: '#000000' }}>Our work is grounded in detailed planning, clear KPIs, and consistent measurement to ensure your investments generate meaningful results.</p>
-            </div>
-            <div className="text-center p-6">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#00403d' }}>Certified Expertise</h3>
-              <p style={{ color: '#000000' }}>A team of skilled professionals with certifications in leading marketing platforms and methodologies.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Process - Important Section */}
-      <section id="process" className="py-20" style={{ backgroundColor: '#00403d' }}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4" style={{ color: '#d9ff00' }}>
-            Our Proven Process
-          </h2>
-          <p className="text-xl text-center mb-16 max-w-3xl mx-auto" style={{ color: '#ffffff' }}>
-            A structured, transparent approach ensuring dependable delivery and measurable outcomes.
-          </p>
-          <div className="relative mx-auto max-w-5xl">
-            <div className="timeline-vertical-alt">
-              <div className="timeline-bar-alt"></div>
-              {[{
-                step: "1",
-                title: "Discovery Call",
-                description: "An in-depth consultation to understand your business, goals, and challenges.",
-                details: ["Business analysis and goal setting", "Target audience definition", "Competitor landscape review"]
-              }, {
-                step: "2",
-                title: "Proposal & Scope",
-                description: "A clear, detailed roadmap for engagement.",
-                details: ["Custom strategy development", "Defined deliverables and timelines", "Transparent investment breakdown"]
-              }, {
-                step: "3",
-                title: "Onboarding Kit",
-                description: "Equipping you with the necessary tools and access.",
-                details: ["Project management setup", "Access to platforms and assets", "Team introductions"]
-              }, {
-                step: "4",
-                title: "Kickoff Meeting",
-                description: "Aligning all stakeholders before execution.",
-                details: ["Strategy presentation", "Timeline confirmation", "Roles and responsibilities"]
-              }, {
-                step: "5",
-                title: "Optimization Cycle",
-                description: "Continuous monitoring and refinement for maximum ROI.",
-                details: ["Performance tracking", "Campaign adjustments", "Comprehensive reporting"]
-              }].map((process, index) => {
-                const isLeft = index % 2 === 0;
-                return (
-                  <div key={index} className={`timeline-step-alt flex flex-col md:flex-row items-center mb-16 relative ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                    <div className={`w-full md:w-1/2 flex ${isLeft ? 'justify-end' : 'justify-start'} md:pr-8 md:pl-8`}>
-                      <div className={`timeline-content-alt`} id={`timeline-step-${index}`}>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#00403d' }}>{process.title}</h3>
-                        <p className="mb-4 text-lg" style={{ color: '#00403d' }}>{process.description}</p>
-                        <ul className="text-base space-y-2" style={{ color: '#00403d' }}>
-                          {process.details.map((detail, i) => (
-                            <li key={i}>• {detail}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="timeline-dot-alt absolute left-1/2 md:left-auto md:top-1/2 md:translate-y-[-50%] md:translate-x-0 z-10" style={{ transform: 'translate(-50%, 0)' }}>
-                      <span className="bg-gradient-to-br from-[#d9ff00] via-[#b3cfcd] to-[#00403d] border-4 border-[#00403d] w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-xl">{process.step}</span>
-                    </div>
-                  </div>
-                );
-              })}
+              <h3 className="text-2xl font-bold mb-4" style={{ color: '#d9ff00' }}>Certified Expertise</h3>
+              <p style={{ color: '#fff' }}>A team of skilled professionals with certifications in leading marketing platforms and methodologies.</p>
             </div>
           </div>
         </div>
@@ -304,84 +172,13 @@ function App() {
 
       {/* Case Studies - Horizontal Scrollable Section */}
       <section id="case-studies" className="py-20" style={{ backgroundColor: '#e4e9e9' }}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-10" style={{ color: '#00403d' }}>
+        <div className="container mx-auto px-4 flex flex-col items-center justify-center" style={{minHeight: '480px', height: '480px', paddingTop: '0', paddingBottom: '0', position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', marginBottom: '320px'}}>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-2" style={{ color: '#00403d', marginTop: '0' }}>
             Case Studies
           </h2>
-          <div className="case-studies-scroll flex overflow-x-auto space-x-8 pb-4" style={{ scrollbarWidth: 'thin', scrollbarColor: '#d9ff00 #b3cfcd' }}>
-            {[{
-              title: "Aaryan International",
-              industry: "Professional Services",
-              challenge: "Stagnant lead generation despite significant marketing spend. Existing strategy lacked clear targeting and suffered from inconsistent messaging across channels.",
-              approach: [
-                "Detailed discovery session to define goals and target audiences",
-                "Unified brand strategy with clear positioning",
-                "Data-driven digital marketing plan (SEO, PPC, WhatsApp Marketing)",
-                "Rigorous performance tracking and regular reporting"
-              ],
-              results: [
-                "150% increase in qualified leads within six months",
-                "35% reduction in cost per lead",
-                "Improved brand consistency across digital channels",
-                "Transparent reporting for better budget allocation"
-              ],
-              feedback: "Momentumm Media’s structured approach and commitment to transparency transformed our marketing into a reliable growth engine."
-            }, {
-              title: "AIM",
-              industry: "Retail",
-              challenge: "Low conversion rates and limited visibility in a competitive market. Campaigns lacked cohesion, and website was underperforming.",
-              approach: [
-                "In-depth audit to identify conversion bottlenecks",
-                "Redesigned landing pages to align with brand strategy",
-                "Targeted Performance Marketing campaign",
-                "Integrated WhatsApp Marketing for direct engagement"
-              ],
-              results: [
-                "200% improvement in conversion rates",
-                "45% increase in average order value",
-                "2X higher customer engagement through WhatsApp",
-                "Enhanced reporting and strategic budget allocation"
-              ],
-              feedback: "Momentumm Media provided the clarity and expertise we needed to align our marketing efforts and achieve real, sustainable growth."
-            }, {
-              title: "Core Brain",
-              industry: "Design",
-              challenge: "Fragmented marketing approach and difficulty proving ROI to internal stakeholders. Paid campaigns delivered inconsistent results, with unclear attribution.",
-              approach: [
-                "Comprehensive strategy workshop to clarify goals and KPIs",
-                "Integrated marketing plan (SEO, PPC, Email, Social Media)",
-                "Performance Marketing framework with clear attribution modeling",
-                "Regular, transparent reporting to stakeholders"
-              ],
-              results: [
-                "250% increase in ROI over 12 months",
-                "Streamlined, consistent messaging across channels",
-                "Improved stakeholder confidence with clear reporting",
-                "1 Cr+ ad spend managed efficiently to maximize returns"
-              ],
-              feedback: "Momentumm Media’s disciplined, KPI-driven approach ensured we knew exactly where our budget was going and what it delivered."
-            }].map((cs, idx) => (
-              <SpotlightCard 
-                key={idx}
-                className="case-study-card min-w-[340px] max-w-[340px] md:min-w-[400px] md:max-w-[400px] flex-shrink-0 p-8"
-                backgroundColor="#ffffff"
-                spotlightColor="rgba(0, 64, 61, 0.1)"
-                borderColor="rgba(0, 64, 61, 0.2)"
-              >
-                <h3 className="text-2xl font-bold mb-2" style={{ color: '#00403d' }}>{cs.title}</h3>
-                <p className="text-sm mb-2" style={{ color: '#00403d' }}>Industry: {cs.industry}</p>
-                <p className="mb-2" style={{ color: '#000000' }}><strong>Challenge:</strong> {cs.challenge}</p>
-                <p className="mb-2" style={{ color: '#000000' }}><strong>Approach:</strong></p>
-                <ul className="mb-2 text-sm" style={{ color: '#00403d' }}>
-                  {cs.approach.map((a, i) => <li key={i}>• {a}</li>)}
-                </ul>
-                <p className="mb-2" style={{ color: '#000000' }}><strong>Results:</strong></p>
-                <ul className="mb-2 text-sm" style={{ color: '#00403d' }}>
-                  {cs.results.map((r, i) => <li key={i}>• {r}</li>)}
-                </ul>
-                <p className="italic text-sm" style={{ color: '#00403d' }}>“{cs.feedback}”</p>
-              </SpotlightCard>
-            ))}
+          <div className="flex justify-center items-center flex-1" style={{height: '320px', maxHeight: '320px', overflow: 'visible', width: '100%', marginTop: '0'}}>
+            {/* Sleek animated carousel */}
+            <CaseStudiesCarousel />
           </div>
         </div>
       </section>
@@ -532,4 +329,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
 

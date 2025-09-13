@@ -38,14 +38,13 @@ const GooeyNav = () => {
                     setActiveItem(item.name);
                     scrollToSection(item.href);
                   }}
-                  className={`gooey-nav-button px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                  className={`gooey-nav-button px-3 py-2 rounded-md text-sm font-medium relative overflow-hidden ${
                     activeItem === item.name
                       ? 'text-[#00403d] bg-[#d9ff00]'
-                      : 'text-[#00403d] hover:text-black hover:scale-110 hover:shadow-lg'
+                      : 'text-[#00403d]'
                   }`}
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <div className="absolute inset-0 bg-[#f7f8f8] text-[#00403d] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </button>
               ))}
             </div>
@@ -71,18 +70,6 @@ const GooeyNav = () => {
           </div>
         </div>
       </div>
-
-      {/* Gooey effect styles */}
-      <style jsx>{`
-        .group:hover .absolute {
-          animation: gooey 0.3s ease-in-out;
-        }
-        @keyframes gooey {
-          0% { transform: scaleX(0) scaleY(1); }
-          50% { transform: scaleX(1) scaleY(0.8); }
-          100% { transform: scaleX(1) scaleY(1); }
-        }
-      `}</style>
     </nav>
   );
 };
