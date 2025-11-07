@@ -120,13 +120,12 @@
 
 /* Gradient hover effect for all buttons */
 .button-gradient-effect, .button-gradient-effect:focus {
-  background: linear-gradient(90deg, #d9ff00 0%, #b3cfcd 100%);
-  color: #00403d;
-  transition: background 0.3s, color 0.3s;
 }
 .button-gradient-effect:hover {
-  background: linear-gradient(90deg, #00403d 0%, #d9ff00 100%);
-  color: #ffffff;
+  /* Removed gradient backgrounds from buttons */
+  background: none;
+  color: #00403d;
+  transition: none;
 }
 
 /* Nav bar button special hover */
@@ -354,5 +353,164 @@
     margin-bottom: -8px;
   }
 }
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+  /* Base Typography */
+  body {
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  
+  /* Container padding adjustments */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Navigation improvements */
+  nav {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* Hero section text sizing */
+  .hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-section p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Button improvements */
+  button,
+  .button {
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1.5rem !important;
+    white-space: nowrap;
+  }
+  
+  /* Section spacing */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Stats grid - stack on mobile */
+  .grid.lg\\:grid-cols-5 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Features grid - single column on mobile */
+  .grid.lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Card padding reduction */
+  .p-6 {
+    padding: 1.25rem !important;
+  }
+  
+  /* Heading size adjustments */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Footer contact - stack vertically */
+  .footer-modern-contact p {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .footer-modern-contact .mx-4 {
+    display: none;
+  }
+  
+  /* Logo carousel - adjust for mobile */
+  .flex.space-x-4 {
+    gap: 0.5rem;
+  }
+  
+  /* Prevent horizontal scroll */
+  * {
+    max-width: 100%;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .hero-section h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-4xl,
+  .md\\:text-5xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-3xl,
+  .md\\:text-4xl {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Single column for all grids */
+  .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Reduce section padding even more */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-12 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  /* Button full width on very small screens */
+  button,
+  .button {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+
+
 
 

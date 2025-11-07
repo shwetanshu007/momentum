@@ -76,18 +76,17 @@ export default function CaseStudiesCarousel() {
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full max-w-4xl mx-auto py-0" style={{overflow: 'visible', minHeight: '220px'}}>
+    <div className="relative flex items-center justify-center w-full max-w-6xl mx-auto py-0" style={{overflow: 'visible', minHeight: '220px'}}>
       {caseStudies.map((cs, idx) => {
         // Calculate position and zIndex
         const isActive = idx === active;
         const offset = getOffset(idx);
-        const angle = offset * 30; // degrees for circular effect
-        const radius = 220;
+        const angle = offset * 35; // degrees for circular effect - increased for more gap
+        const radius = 320;
         const x = Math.sin((angle * Math.PI) / 180) * radius;
         const y = Math.cos((angle * Math.PI) / 180) * 40; // raise cards a bit
         const scale = isActive ? 1 : 0.8;
         const zIndex = isActive ? 30 : 20 - Math.abs(offset);
-        const boxShadow = isActive ? '0 8px 32px rgba(0,64,61,0.18)' : '0 2px 12px rgba(0,64,61,0.10)';
         return (
           <div
             key={idx}
@@ -96,17 +95,16 @@ export default function CaseStudiesCarousel() {
               top: `calc(10% + ${y}px)`,
               transform: `translateX(-50%) translateX(${x}px) scale(${scale})`,
               zIndex,
-              boxShadow,
               opacity: isActive ? 1 : 0.7,
               filter: isActive ? 'none' : 'blur(0.5px)',
-              maxWidth: '320px',
+              maxWidth: '450px',
               width: '100%',
-              minWidth: '220px',
+              minWidth: '320px',
             }}
             onClick={() => handleCardClick(idx)}
           >
             <SpotlightCard 
-              className="case-study-card w-full min-w-[220px] max-w-[320px] flex-shrink-0 p-4 md:p-6"
+              className="case-study-card w-full min-w-[320px] max-w-[450px] flex-shrink-0 p-4 md:p-6"
               backgroundColor="#ffffff"
               spotlightColor="rgba(0, 64, 61, 0.1)"
               borderColor="rgba(0, 64, 61, 0.2)"

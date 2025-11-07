@@ -7,9 +7,7 @@ const blobColors = [
   '#00403d', // Pine green
 ];
 
-function randomBetween(min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 
 const GooeyBackground = () => {
   const svgRef = useRef(null);
@@ -18,27 +16,22 @@ const GooeyBackground = () => {
     { x: 600, y: 300, r: 100, dx: 0, dy: 0 },
     { x: 500, y: 100, r: 60, dx: 0, dy: 0 },
   ]);
-  const mouse = useRef({ x: 400, y: 200 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const rect = svgRef.current.getBoundingClientRect();
-      mouse.current.x = e.clientX - rect.left;
-      mouse.current.y = e.clientY - rect.top;
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   useEffect(() => {
     let frame;
     const animate = () => {
       blobs.current.forEach((blob, i) => {
-        // Each blob is attracted to the mouse, but with a delay and some randomness
-        const dx = (mouse.current.x - blob.x) * (0.08 + i * 0.03) + randomBetween(-2, 2);
-        const dy = (mouse.current.y - blob.y) * (0.08 + i * 0.03) + randomBetween(-2, 2);
-        blob.x += dx * 0.1;
-        blob.y += dy * 0.1;
+        // Autonomous blob movement without mouse interaction
+        const time = Date.now() * 0.001;
+        const dx = Math.sin(time * (0.5 + i * 0.1)) * 2;
+        const dy = Math.cos(time * (0.3 + i * 0.08)) * 2;
+        blob.x += dx * 0.3;
+        blob.y += dy * 0.3;
+        
+        // Keep blobs within bounds
+        if (blob.x < 50) blob.x = 50;
+        if (blob.x > 750) blob.x = 750;
+        if (blob.y < 50) blob.y = 50;
+        if (blob.y > 550) blob.y = 550;
       });
       if (svgRef.current) {
         const circles = svgRef.current.querySelectorAll('circle');

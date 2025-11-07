@@ -66,52 +66,64 @@ const SimpleStackingServices = () => {
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-        // Recreate the stacking effect with normal order (first card on top)
-    cards.forEach((card, i) => {
-      const titleStrip = card.querySelector('.title-strip');
-      
-      // Scale animation based on normal index for proper stacking
-      gsap.to(card, {
-        scale: () => 0.8 + i * 0.035,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          start: "top-=" + 40 * i + " 40%",
-          end: "top 20%",
-          scrub: true
-        }
-      });
-
-      // Pin each card with normal z-index
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top-=" + 40 * i + " 40%",
-        end: "top center",
-        endTrigger: endElementRef.current,
-        pin: true,
-        pinSpacing: false,
-        id: "card-" + i,
-        onUpdate: (self) => {
-          // Show title strip when card is pinned and scaled
-          const progress = self.progress;
-          if (titleStrip) {
-            gsap.set(titleStrip, {
-              opacity: progress > 0.1 ? 1 : 0,
-              display: progress > 0.1 ? 'flex' : 'none'
-            });
+    // Wait for Lenis to be properly initialized
+    const initializeScrollTrigger = () => {
+      // Recreate the stacking effect with normal order (first card on top)
+      cards.forEach((card, i) => {
+        const titleStrip = card.querySelector('.title-strip');
+        
+        // Scale animation based on normal index for proper stacking
+        // All cards use consistent spacing with first card positioned higher
+        const offset = 40 * i; // Consistent spacing for all cards
+        
+        gsap.to(card, {
+          scale: () => 0.8 + i * 0.035,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top-=" + offset + " 30%", // Changed from 40% to 30% to move cards higher
+            end: "top 10%", // Changed from 20% to 10% to stop higher
+            scrub: true,
+            scroller: document.body // Use document.body for Lenis
           }
-        }
+        });
+
+        // Pin each card with normal z-index
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top-=" + offset + " 30%", // Changed from 40% to 30% to move cards higher  
+          end: "top center",
+          endTrigger: endElementRef.current,
+          pin: true,
+          pinSpacing: false,
+          id: "card-" + i,
+          scroller: document.body, // Use document.body for Lenis
+          onUpdate: (self) => {
+            // Show title strip when card is pinned and scaled
+            const progress = self.progress;
+            if (titleStrip) {
+              gsap.set(titleStrip, {
+                opacity: progress > 0.1 ? 1 : 0,
+                display: progress > 0.1 ? 'flex' : 'none'
+              });
+            }
+          }
+        });
+
+        // Set z-index for proper stacking order (first card = highest z-index)
+        gsap.set(card, {
+          zIndex: cards.length - i
+        });
       });
 
-      // Set z-index for proper stacking order (first card = highest z-index)
-      gsap.set(card, {
-        zIndex: cards.length - i
-      });
-    });
+      ScrollTrigger.refresh();
+    };
 
-    ScrollTrigger.refresh();
+    // Delay initialization to ensure Lenis is ready
+    const timeoutId = setTimeout(initializeScrollTrigger, 100);
 
     return () => {
+      clearTimeout(timeoutId);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
@@ -125,12 +137,21 @@ const SimpleStackingServices = () => {
         position: 'relative'
       }}
     >
+      {/* Services Header */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d9ff00' }}>
+          Our Services
+        </h2>
+        <p className="text-xl max-w-3xl mx-auto" style={{ color: '#ffffff' }}>
+          Integrated marketing solutions designed to drive measurable outcomes for your business.
+        </p>
+      </div>
       {services.map((service, index) => (
         <div
           key={service.id}
           ref={el => (cardsRef.current[index] = el)}
           style={{
-            border: service.color === '#b3cccc' ? '2px solid rgba(0,64,61,0.2)' : 'none',
+            border: 'none', // Removed all borders for clean look
             background: service.color === '#00403d' 
               ? 'linear-gradient(135deg, #00403d, #004a44)' 
               : service.color === '#d9ff00'
