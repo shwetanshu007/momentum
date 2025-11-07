@@ -118,6 +118,27 @@
   }
 }
 
+/* Remove scrollbar globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /* Gradient hover effect for all buttons */
 .button-gradient-effect, .button-gradient-effect:focus {
 }
