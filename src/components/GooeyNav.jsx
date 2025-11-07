@@ -142,7 +142,6 @@ const GooeyNav = () => {
       )}
     </nav>
   );
-};);
 };
 
 export default GooeyNav;
